@@ -13,7 +13,7 @@ import java.util.List;
 
 
 public class DeveloperDao {
-    private Connection connection;
+    private final Connection connection;
 
     public DeveloperDao() {
         connection = DbUtil.getConnection();
