@@ -3,7 +3,9 @@ package com.avvsoft2050.controller;
 import com.avvsoft2050.dao.DeveloperDao;
 import com.avvsoft2050.model.Developer;
 
+import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -28,18 +30,22 @@ public class DeveloperController extends HttpServlet {
         String action = request.getParameter("action");
 
         if (action.equalsIgnoreCase("delete")) {
-            int developerId = Integer.parseInt(request.getParameter("id"));
+            int developerId = Integer.parseInt(request.getParameter("developerId"));
             dao.deleteDeveloper(developerId);
             forward = LIST_DEVELOPER;
             request.setAttribute("developers", dao.getAllDevelopers());
         } else if (action.equalsIgnoreCase("edit")) {
             forward = INSERT_OR_EDIT;
-            int developerId = Integer.parseInt(request.getParameter("id"));
+            int developerId = Integer.parseInt(request.getParameter("developerId"));
             Developer developer = dao.getDeveloperById(developerId);
             request.setAttribute("developer", developer);
         } else if (action.equalsIgnoreCase("listDeveloper")) {
             forward = LIST_DEVELOPER;
-            request.setAttribute("developers", dao.getAllDevelopers());
+            ArrayList<Developer> list;
+            list = dao.getAllDevelopers();
+            System.out.println(list.get(0).getDeveloperId());
+            System.out.println(list.get(0).getSalary());
+            request.setAttribute("developers", list);
         } else {
             forward = INSERT_OR_EDIT;
         }

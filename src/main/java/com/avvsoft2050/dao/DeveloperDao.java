@@ -9,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class DeveloperDao {
@@ -64,11 +63,11 @@ public class DeveloperDao {
         }
     }
 
-    public List<Developer> getAllDevelopers() {
-        List<Developer> developers = new ArrayList<Developer>();
+    public ArrayList<Developer> getAllDevelopers() {
+        ArrayList<Developer> developers = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("select * from developers");
+            ResultSet rs = statement.executeQuery("select * from developers order by id");
             while (rs.next()) {
                 Developer developer = new Developer();
                 developer.setDeveloperId(rs.getInt("id"));

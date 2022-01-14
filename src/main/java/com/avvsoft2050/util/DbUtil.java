@@ -17,15 +17,15 @@ public class DbUtil {
         else {
             try {
                 Properties prop = new Properties();
-                InputStream inputStream = DbUtil.class.getClassLoader().getResourceAsStream("/db.properties");
-                prop.load(inputStream);
-                String driver = prop.getProperty("driver");
-                String url = prop.getProperty("url");
-                String user = prop.getProperty("user");
-                String password = prop.getProperty("password");
+                String driver = "org.postgresql.Driver";
+//                String driver = "com.mysql.cj.jdbc.Driver";
+                String url = "jdbc:postgresql://localhost:5432/test_db";
+//                String url = "jdbc:mysql://localhost:3306/test_db?useSSL=false";
+                String user = "testuser";
+                String password = "testuser";
                 Class.forName(driver);
                 connection = DriverManager.getConnection(url, user, password);
-            } catch (SQLException | ClassNotFoundException | IOException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
             return connection;
