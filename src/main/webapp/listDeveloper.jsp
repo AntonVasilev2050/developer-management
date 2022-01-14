@@ -9,32 +9,32 @@
 </head>
 <body>
 <table border=1>
-<%--    <thead>--%>
-<%--    <tr>--%>
-<%--        <th>Developer Id</th>--%>
-<%--        <th>Name</th>--%>
-<%--        <th>Specialty</th>--%>
-<%--        <th>Salary</th>--%>
-<%--        <th colspan=2>Action</th>--%>
-<%--    </tr>--%>
-<%--    </thead>--%>
-<%--    <tbody>--%>
-    <c:forEach var="developer" items="${developers}">
+    <thead>
+    <tr>
+        <th>Developer Id</th>
+        <th>Name</th>
+        <th>Specialty</th>
+        <th>Salary</th>
+        <th colspan=2>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <c:forEach items="${developers}" var="developer">
         <tr>
-            <td><c:out value="${developer.developerid}" /></td>
+            <td><c:out value="${developer.developerId}" /></td>
             <td><c:out value="${developer.name}" /></td>
             <td><c:out value="${developer.specialty}" /></td>
             <td><c:out value="${developer.salary}" /></td>
 
-<%--            <td>--%>
-<%--                <a href="DeveloperController?action=edit&developerId=<c:out value="${developer.id}"/>">Update</a>--%>
-<%--            </td>--%>
-<%--            <td>--%>
-<%--                <a href="DeveloperController?action=delete&developerId=<c:out value="${developer.id}"/>">Delete</a>--%>
-<%--            </td>--%>
+            <td>
+                <a href="DeveloperController?action=edit&developerId=<c:out value="${developer.developerId}"/>">Update</a>
+            </td>
+            <td>
+                <a href="DeveloperController?action=delete&developerId=<c:out value="${developer.developerId}"/>">Delete</a>
+            </td>
         </tr>
     </c:forEach>
-<%--    </tbody>--%>
+    </tbody>
 </table>
 <p><a href="DeveloperController?action=insert">Add User</a></p>
 </body>

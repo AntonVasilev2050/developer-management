@@ -14,8 +14,8 @@
 <body>
 
 <form method="POST" action='DeveloperController' name="frmAddDeveloper">
-    Developer ID : <input type="text" readonly="readonly" name="id"
-                     value="<c:out value="${developer.id}" />" /> <br />
+    Developer ID : <input type="text" readonly="readonly" name="developerId"
+                     value="<c:out value="${developer.developerId}" />" /> <br />
     Name : <input
         type="text" name="name"
         value="<c:out value="${developer.name}" />" /> <br />

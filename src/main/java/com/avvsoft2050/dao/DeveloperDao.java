@@ -36,7 +36,7 @@ public class DeveloperDao {
     public void deleteDeveloper(int developerId) {
         try {
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("delete from developers where developerid=?");
+                    .prepareStatement("delete from developers where developerId=?");
             // Parameters start with 1
             preparedStatement.setInt(1, developerId);
             preparedStatement.executeUpdate();
@@ -67,10 +67,10 @@ public class DeveloperDao {
         ArrayList<Developer> developers = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("select * from developers order by developerid");
+            ResultSet rs = statement.executeQuery("select * from developers order by developerId");
             while (rs.next()) {
                 Developer developer = new Developer();
-                developer.setDeveloperId(rs.getInt("developerid"));
+                developer.setDeveloperId(rs.getInt("developerId"));
                 developer.setName(rs.getString("name"));
                 developer.setSpecialty(rs.getString("specialty"));
                 developer.setSalary(rs.getInt("salary"));
@@ -87,12 +87,12 @@ public class DeveloperDao {
         Developer developer = new Developer();
         try {
             PreparedStatement preparedStatement = connection.
-                    prepareStatement("select * from developers where developerid=?");
+                    prepareStatement("select * from developers where developerId=?");
             preparedStatement.setInt(1, developerId);
             ResultSet rs = preparedStatement.executeQuery();
 
             if (rs.next()) {
-                developer.setDeveloperId(rs.getInt("developerid"));
+                developer.setDeveloperId(rs.getInt("developerId"));
                 developer.setName(rs.getString("name"));
                 developer.setSpecialty(rs.getString("specialty"));
                 developer.setSalary(rs.getInt("salary"));
