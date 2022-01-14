@@ -36,7 +36,7 @@ public class DeveloperDao {
     public void deleteDeveloper(int developerId) {
         try {
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("delete from developers where id=?");
+                    .prepareStatement("delete from developers where developerid=?");
             // Parameters start with 1
             preparedStatement.setInt(1, developerId);
             preparedStatement.executeUpdate();
@@ -50,7 +50,7 @@ public class DeveloperDao {
         try {
             PreparedStatement preparedStatement = connection
                     .prepareStatement("update developers set name=?, specialty=?, salary=?" +
-                            "where id=?");
+                            "where developerId=?");
             // Parameters start with 1
             preparedStatement.setString(1, developer.getName());
             preparedStatement.setString(2, developer.getSpecialty());
@@ -67,10 +67,10 @@ public class DeveloperDao {
         ArrayList<Developer> developers = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("select * from developers order by id");
+            ResultSet rs = statement.executeQuery("select * from developers order by developerid");
             while (rs.next()) {
                 Developer developer = new Developer();
-                developer.setDeveloperId(rs.getInt("id"));
+                developer.setDeveloperId(rs.getInt("developerid"));
                 developer.setName(rs.getString("name"));
                 developer.setSpecialty(rs.getString("specialty"));
                 developer.setSalary(rs.getInt("salary"));
@@ -87,12 +87,12 @@ public class DeveloperDao {
         Developer developer = new Developer();
         try {
             PreparedStatement preparedStatement = connection.
-                    prepareStatement("select * from developers where id=?");
+                    prepareStatement("select * from developers where developerid=?");
             preparedStatement.setInt(1, developerId);
             ResultSet rs = preparedStatement.executeQuery();
 
             if (rs.next()) {
-                developer.setDeveloperId(rs.getInt("id"));
+                developer.setDeveloperId(rs.getInt("developerid"));
                 developer.setName(rs.getString("name"));
                 developer.setSpecialty(rs.getString("specialty"));
                 developer.setSalary(rs.getInt("salary"));

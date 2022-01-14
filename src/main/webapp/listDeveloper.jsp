@@ -21,8 +21,7 @@
 <%--    <tbody>--%>
     <c:forEach var="developer" items="${developers}">
         <tr>
-<%--            <td>${developer.id}</td>--%>
-            <td><c:out value="${developer.id}" /></td>
+            <td><c:out value="${developer.developerid}" /></td>
             <td><c:out value="${developer.name}" /></td>
             <td><c:out value="${developer.specialty}" /></td>
             <td><c:out value="${developer.salary}" /></td>
