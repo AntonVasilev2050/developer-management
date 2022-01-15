@@ -3,18 +3,15 @@ package com.avvsoft2050.controller;
 import com.avvsoft2050.dao.DeveloperDao;
 import com.avvsoft2050.model.Developer;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import java.io.IOException;
 
 public class DeveloperController extends HttpServlet {
-    //    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
     private static final String INSERT_OR_EDIT = "/developer.jsp";
     private static final String LIST_DEVELOPER = "/listDeveloper.jsp";
     private final DeveloperDao dao;
@@ -24,6 +21,7 @@ public class DeveloperController extends HttpServlet {
         dao = new DeveloperDao();
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String forward = "";
         String action = request.getParameter("action");
@@ -40,10 +38,6 @@ public class DeveloperController extends HttpServlet {
             request.setAttribute("developer", developer);
         } else if (action.equalsIgnoreCase("listDeveloper")) {
             forward = LIST_DEVELOPER;
-//            ArrayList<Developer> list;
-//            list = dao.getAllDevelopers();
-//            System.out.println(list.get(0).getDeveloperId());
-//            System.out.println(list.get(0).getSalary());
             request.setAttribute("developers", dao.getAllDevelopers());
         } else {
             forward = INSERT_OR_EDIT;
@@ -53,13 +47,13 @@ public class DeveloperController extends HttpServlet {
         view.forward(request, response);
     }
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Developer developer = new Developer();
         developer.setName(request.getParameter("name"));
         developer.setSpecialty(request.getParameter("specialty"));
         developer.setSalary(Integer.parseInt(request.getParameter("salary")));
         String developerId = request.getParameter("developerId");
-        System.out.println(developerId);
         if (developerId == null || developerId.isEmpty()) {
             dao.addDeveloper(developer);
         } else {
