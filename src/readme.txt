@@ -5,15 +5,20 @@ CREATE TABLE developers (
     salary int
 );
 
-CREATE TABLE locations (
-    locationId serial PRIMARY KEY,
-    country varchar(30),
-    city varchar(30)
+CREATE TABLE languages (
+    languageId serial PRIMARY KEY,
+    language varchar(30)
 );
 
-CREATE TABLE developers_locations (
+CREATE TABLE developers_languages (
     developerId int not null,
-    locationId int not null,
+    languageId int not null,
     FOREIGN KEY (developerId) REFERENCES developers(developerId),
-    FOREIGN KEY (locationId) REFERENCES locations(locationId)
+    FOREIGN KEY (languageId) REFERENCES languages(languageId)
 );
+
+INSERT INTO languages VALUES (1, 'Russian'),
+                             (2, 'Belarus'),
+                             (3, 'English');
+
+select * from languages;
