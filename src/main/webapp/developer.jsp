@@ -23,8 +23,10 @@
         type="text" name="specialty"
         value="<c:out value="${developer.specialty}" />" /> <br />
     Salary : <input type="text" name="salary"
-                   value="<c:out value="${developer.salary}" />" /> <br /> <input
-        type="submit" value="Submit" />
+                   value="<c:out value="${developer.salary}" />" /> <br />
+    Speaks Languages : <input type="text" name="language"
+                    value="<c:out value="${developer.language}" />" /> <br />
+    <input type="submit" value="Submit" />
 </form>
 </body>
 </html>

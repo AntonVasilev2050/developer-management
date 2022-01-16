@@ -1,10 +1,15 @@
 package com.avvsoft2050.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Developer {
     private int developerId;
     private String name;
     private String specialty;
     private int salary;
+    private ArrayList<String> languagesThatDeveloperSpeaks = null;
+    private StringBuilder languages;
 
     public int getDeveloperId() {
         return developerId;
@@ -38,6 +43,14 @@ public class Developer {
         this.salary = salary;
     }
 
+    public ArrayList<String> getLanguagesThatDeveloperSpeaks() {
+        return languagesThatDeveloperSpeaks;
+    }
+
+    public void setLanguagesThatDeveloperSpeaks(ArrayList<String> languagesThatDeveloperSpeaks) {
+        this.languagesThatDeveloperSpeaks = languagesThatDeveloperSpeaks;
+    }
+
     @Override
     public String toString() {
         return "Developer{" +
@@ -45,6 +58,7 @@ public class Developer {
                 ", name='" + name + '\'' +
                 ", specialty='" + specialty + '\'' +
                 ", salary=" + salary +
+                ", languagesThatDeveloperSpeaks=" + languagesThatDeveloperSpeaks +
                 '}';
     }
 }

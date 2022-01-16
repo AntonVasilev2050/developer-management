@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 
 public class DeveloperDao {
@@ -67,19 +69,45 @@ public class DeveloperDao {
         ArrayList<Developer> developers = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("select * from developers order by developerId");
+            ResultSet rs = statement.executeQuery(
+                    "select d.developerId, name, specialty, salary, language from developers d " +
+                            "join developers_languages dl on d.developerId = dl.developerId " +
+                            "join languages l on dl.languageId = l.languageId order by developerId");
             while (rs.next()) {
                 Developer developer = new Developer();
                 developer.setDeveloperId(rs.getInt("developerId"));
                 developer.setName(rs.getString("name"));
                 developer.setSpecialty(rs.getString("specialty"));
                 developer.setSalary(rs.getInt("salary"));
-                developers.add(developer);
+                String language = rs.getString("language");
+                ArrayList<String> listOfLanguages = new ArrayList<>();
+                if (developers.isEmpty()) {
+                    listOfLanguages.add(language);
+                    developer.setLanguagesThatDeveloperSpeaks(listOfLanguages);
+                    developers.add(developer);
+                } else {
+                    for (int i = 0; i < developers.size(); i++) {
+                        if (developers.get(i).getDeveloperId() == developer.getDeveloperId()) {
+                            listOfLanguages = developers.get(i).getLanguagesThatDeveloperSpeaks();
+                            if (!listOfLanguages.contains(language)) {
+                                listOfLanguages.add(language);
+                                developer.setLanguagesThatDeveloperSpeaks(listOfLanguages);
+                                developers.set(i, developer);
+                            }
+                        } else {
+                            if (!listOfLanguages.contains(language)) {
+                                listOfLanguages.add(language);
+                                developer.setLanguagesThatDeveloperSpeaks(listOfLanguages);
+                                developers.add(i, developer);
+                            }
+                        }
+                    }
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        developers.sort(Comparator.comparingInt(Developer::getDeveloperId));
         return developers;
     }
 

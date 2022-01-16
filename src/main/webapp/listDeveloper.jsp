@@ -15,6 +15,7 @@
         <th>Name</th>
         <th>Specialty</th>
         <th>Salary</th>
+        <th>Speaks Languages</th>
         <th colspan=2>Action</th>
     </tr>
     </thead>
@@ -25,6 +26,7 @@
             <td><c:out value="${developer.name}" /></td>
             <td><c:out value="${developer.specialty}" /></td>
             <td><c:out value="${developer.salary}" /></td>
+            <td><c:out value="${developer.getLanguagesThatDeveloperSpeaks()}" /></td>
 
             <td>
                 <a href="DeveloperController?action=edit&developerId=<c:out value="${developer.developerId}"/>">Update</a>

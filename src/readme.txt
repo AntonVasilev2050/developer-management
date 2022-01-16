@@ -17,8 +17,18 @@ CREATE TABLE developers_languages (
     FOREIGN KEY (languageId) REFERENCES languages(languageId)
 );
 
+INSERT INTO developers VALUES (1, 'Peter', 'C++', 2000),
+                              (2, 'AsyaSmile', 'UI/UX', 3000),
+                              (3, 'Dmitrii', 'Java', 4000);
+
+
+
 INSERT INTO languages VALUES (1, 'Russian'),
                              (2, 'Belarus'),
                              (3, 'English');
 
-select * from languages;
+INSERT INTO developers_languages VALUES (1, 1),
+                                        (1, 3),
+                                        (2, 1),
+                                        (3, 1),
+                                        (3, 2);
