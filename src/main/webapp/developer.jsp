@@ -25,7 +25,7 @@
     Salary : <input type="text" name="salary"
                    value="<c:out value="${developer.salary}" />" /> <br />
     Speaks Languages : <input type="text" name="language"
-                    value="<c:out value="${developer.language}" />" /> <br />
+                    value="<c:out value="${developer.getLanguagesThatDeveloperSpeaks()}" />" /> <br />
     <input type="submit" value="Submit" />
 </form>
 </body>
